@@ -328,10 +328,10 @@ export class Ionic4DatepickerModalComponent implements OnInit {
     // console.log('getYearsList =>', from, to);
     // tslint:disable-next-line:prefer-const
     let yearsList = [];
-    let minYear = 1900;
+    let minYear = 1999;
     // let maxYear = 2100;
     // let minYear = 2000;
-    let maxYear = new Date().getFullYear() + 1;
+    let maxYear = new Date().getFullYear() + 80;
     minYear = from ? new Date(from).getFullYear() : minYear;
     maxYear = to ? new Date(to).getFullYear() : maxYear;
     for (let i = minYear; i <= maxYear; i++) {

@@ -124,3 +124,9 @@ For model to open as screenshot please add below css in your projects global.scs
   }
 }
 ```
+
+
+
+Amin: comment
+
+run "npm run build_lib" in command to fix ionic4-datepicker package can't be found issue.
