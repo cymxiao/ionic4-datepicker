@@ -2,7 +2,9 @@ import { Component, OnInit, forwardRef, Input, ElementRef, Renderer, Renderer2 }
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, NgModel } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Ionic4DatepickerModalComponent } from './ionic4-datepicker-modal/ionic4-datepicker-modal.component';
-import { DatePipe } from '@angular/common';
+import * as moment_ from 'moment';
+
+const moment = moment_;
 
 const noop = () => {
 };
@@ -36,7 +38,6 @@ export class Ionic4DatepickerComponent implements OnInit, ControlValueAccessor {
 
   constructor(
     private modalCtrl: ModalController,
-    public datePipe: DatePipe,
     public el: ElementRef,
     public renderer: Renderer
   ) { }
@@ -94,24 +95,36 @@ export class Ionic4DatepickerComponent implements OnInit, ControlValueAccessor {
     }
     // tslint:disable-next-line:prefer-const
     let objConfig: any = {};
-    objConfig.inputDate = this.selectedDate.date ? new Date(this.selectedDate.date) : new Date();
-    objConfig.dateFormat = config.dateFormat ? config.dateFormat : 'dd MMM yyyy';
-    objConfig.titleLabel = config.titleLabel ? config.titleLabel : null;
+
     objConfig.from = config.fromDate ? config.fromDate : '';
     objConfig.to = config.toDate ? config.toDate : '';
+    objConfig.showTodayButton = config.showTodayButton === undefined ? true : config.showTodayButton;
     objConfig.closeOnSelect = config.closeOnSelect ? config.closeOnSelect : false;
-    // tslint:disable-next-line:triple-equals
-    objConfig.showTodayButton = config.showTodayButton == undefined ? true : config.showTodayButton;
     objConfig.disableWeekDays = config.disableWeekDays ? config.disableWeekDays : [];
     objConfig.mondayFirst = config.mondayFirst ? config.mondayFirst : false;
     objConfig.setLabel = config.setLabel ? config.setLabel : 'Set';
     objConfig.todayLabel = config.todayLabel ? config.todayLabel : 'Today';
     objConfig.closeLabel = config.closeLabel ? config.closeLabel : 'Close';
     objConfig.disabledDates = config.disabledDates ? config.disabledDates : [];
+    objConfig.titleLabel = config.titleLabel ? config.titleLabel : null;
+
     objConfig.monthsList = config.monthsList ? config.monthsList : this.monthsList;
     objConfig.monthsList = [...objConfig.monthsList];
+
     objConfig.weeksList = config.weeksList ? config.weeksList : this.weeksList;
     objConfig.weeksList = [...objConfig.weeksList];
+
+    objConfig.dateFormat = config.dateFormat ? config.dateFormat : 'DD MMM YYYY';
+    // console.log(this.selectedDate.date, objConfig.dateFormat, moment.locale());
+
+    objConfig.clearButton = config.clearButton ? config.clearButton : false;
+
+    objConfig.yearInAscending = config.yearInAscending ? config.yearInAscending : false;
+    objConfig.momentLocale = config.momentLocale ? config.momentLocale : 'en-US';
+
+    moment.locale(objConfig.momentLocale);
+    objConfig.inputDate = this.selectedDate.date ? moment(this.selectedDate.date, objConfig.dateFormat).toDate() : new Date();
+    // console.log('objConfig.inputDate : ', objConfig.inputDate);
 
     // console.log('config =>', objConfig);
     // tslint:disable-next-line:prefer-const
@@ -128,7 +141,8 @@ export class Ionic4DatepickerComponent implements OnInit, ControlValueAccessor {
         if (data.data && data.data.date) {
           this.selectedDate.date = data.data.date;
           // tslint:disable-next-line:prefer-const
-          let formattedDate = this.datePipe.transform(new Date(this.selectedDate.date), objConfig.dateFormat);
+
+          let formattedDate = moment(data.data.date).format(objConfig.dateFormat);
           // console.log('FORMATTED DATE =>', formattedDate, objConfig.dateFormat);
           this.value = formattedDate;
         }

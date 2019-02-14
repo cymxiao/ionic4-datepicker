@@ -10,6 +10,41 @@
 </ion-header>
 
 <ion-content padding>
-  <li-ionic4-datepicker [(ngModel)]="mydate" [inputDateConfig]="datePickerObj"></li-ionic4-datepicker>
-  <ion-input [(ngModel)]="date" [liIonic4Datepicker]="datePickerObj" style="border: 1px solid black;margin: 10px;"></ion-input>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Component way</ion-label>
+          <li-ionic4-datepicker [(ngModel)]="mydate" [inputDateConfig]="datePickerObj"></li-ionic4-datepicker>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Directive way</ion-label>
+          <ion-input [(ngModel)]="mydate" (ionChange)="onChangeDate()"
+            [liIonic4Datepicker]="datePickerObj"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Directive way Disabled</ion-label>
+          <ion-input [(ngModel)]="mydatePtBr" (ionChange)="onChangeDate()" [disabled]="isDisableDatePicker"
+            [liIonic4Datepicker]="datePickerObjPtBr"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Make above enable/disable</ion-label>
+          <ion-toggle [(ngModel)]="isDisableDatePicker"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
