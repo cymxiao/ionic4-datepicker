@@ -62,7 +62,8 @@
 
     <ion-row *ngFor="let row of rows;" class="dp-days-list">
       <ion-col *ngFor="let col of cols; let i = index ;" (click)="dateSelected(daysList[row + i])" no-padding 
-                    [ngClass]="{'dp-selecteddate': (daysList[row + i]?.epoch === selctedDateEpoch),
+                    [ngClass]="{'dp-selecteddate': (i!==0 && i!==6 && (daysList[row + i]?.epoch === selctedDateEpoch)),
+                                'dp-selecteddate-weekend': ((i===0 || i===6 ) && (daysList[row + i]?.epoch === selctedDateEpoch)),
                                 'dp-today' : (daysList[row + i]?.epoch == today),
                                 'disabled' : (daysList[row + i]?.disabled)}">
         <!-- <div class="days">{{daysList[row + col]?.date}}</div> -->

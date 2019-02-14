@@ -42,7 +42,7 @@ export class DatepickerDirectivePage implements OnInit {
       // todayLabel: 'T', // default 'Today'
       // closeLabel: 'C', // default 'Close'
       // disabledDates: disabledDates, // default []
-      titleLabel: 'Select a Date', // default null
+      // titleLabel: 'Select a Date', // default null
       // monthsList: this.monthsList,
       // weeksList: this.weeksList
     };

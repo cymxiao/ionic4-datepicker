@@ -102,7 +102,9 @@
                         font-weight: bold;
                     }
                     .weekend{
-                        color: #FF6369;
+                        //color: #FF6369;
+                        //color: var(--ion-color-weekend);
+                        color: var(--ion-text-color,#FF6369);
                     }
                 }
             }
@@ -119,7 +121,7 @@
                         justify-content: center;
                     }
                     .weekend{
-                        color: #FF6369;
+                        color: var(--ion-text-color,#FF6369);
                     }
                 }
             }
@@ -128,6 +130,13 @@
         .dp-selecteddate {
             background: var(--ion-color-primary) !important;
             color: var(--ion-color-primary-contrast) !important;
+            border-radius: 4px;
+            font-weight: 500 !important;
+        }
+
+        .dp-selecteddate-weekend {
+            background: var(--ion-color-weekend) !important;
+            color: var(--ion-color-weekend-contrast) !important;
             border-radius: 4px;
             font-weight: 500 !important;
         }
