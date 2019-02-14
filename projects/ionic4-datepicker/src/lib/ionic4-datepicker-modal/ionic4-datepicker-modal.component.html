@@ -62,12 +62,13 @@
 
     <ion-row *ngFor="let row of rows;" class="dp-days-list">
       <ion-col *ngFor="let col of cols; let i = index ;" (click)="dateSelected(daysList[row + i])" no-padding 
-                    [ngClass]="{'dp-selecteddate': (i!==0 && i!==6 && (daysList[row + i]?.epoch === selctedDateEpoch)),
-                                'dp-selecteddate-weekend': ((i===0 || i===6 ) && (daysList[row + i]?.epoch === selctedDateEpoch)),
+                    [ngClass]="{'dp-selecteddate': ( ((this.mainObj.mondayFirst && col!==5) || (!this.mainObj.mondayFirst && col!==0))   && i!==6 && (daysList[row + i]?.epoch === selctedDateEpoch)),
+                                'dp-selecteddate-weekend': (((this.mainObj.mondayFirst && (col===5 || col===6)) || (!this.mainObj.mondayFirst && (col===0 || col===6))) && (daysList[row + i]?.epoch === selctedDateEpoch)),
+                                'weekend-day': ((this.mainObj.mondayFirst && (col===5 || col===6)) || (!this.mainObj.mondayFirst && (col===0 || col===6))),
                                 'dp-today' : (daysList[row + i]?.epoch == today),
                                 'disabled' : (daysList[row + i]?.disabled)}">
-        <!-- <div class="days">{{daysList[row + col]?.date}}</div> -->
-        <div [ngClass]="{'days':true,'weekend': ((this.mainObj.mondayFirst && (col===5 || col===6)) || (!this.mainObj.mondayFirst && (col===0 || col===6)) )}">{{daysList[row + col]?.date}}</div> 
+        <div class="days">{{daysList[row + col]?.date}}</div>
+        <!-- <div [ngClass]="{'days':true,'weekend': ((this.mainObj.mondayFirst && (col===5 || col===6)) || (!this.mainObj.mondayFirst && (col===0 || col===6)) )}">{{daysList[row + col]?.date}}</div>  -->
       </ion-col>
     </ion-row>
   </ion-grid>
