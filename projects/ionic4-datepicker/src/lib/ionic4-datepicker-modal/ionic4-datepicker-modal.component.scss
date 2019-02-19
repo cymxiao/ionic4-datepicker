@@ -1,4 +1,5 @@
 :host {
+ 
     ion-header {
         height: 60px;
 
@@ -101,9 +102,11 @@
                         justify-content: center;
                         font-weight: bold;
                     }
-                    .weekend{
-                        color: #FF6369;
-                    }
+                    // .weekend{
+                    //     //color: #FF6369;
+                    //     //color: var(--ion-color-weekend);
+                    //     color: var(--ion-text-color,#FF6369);
+                    // }
                 }
             }
 
@@ -118,16 +121,27 @@
                         display: flex;
                         justify-content: center;
                     }
-                    .weekend{
-                        color: #FF6369;
-                    }
+                    // .weekend{
+                    //     color: var(--ion-text-color,#FF6369);
+                    // }
                 }
             }
+        }
+
+        .weekend-day{
+            color: var(--ion-color-weekend);
         }
 
         .dp-selecteddate {
             background: var(--ion-color-primary) !important;
             color: var(--ion-color-primary-contrast) !important;
+            border-radius: 4px;
+            font-weight: 500 !important;
+        }
+
+        .dp-selecteddate-weekend {
+            background: var(--ion-color-weekend) !important;
+            color: var(--ion-color-weekend-contrast) !important;
             border-radius: 4px;
             font-weight: 500 !important;
         }
@@ -193,3 +207,9 @@
         }
     }
 }
+
+// .sc-ion-modal-md-h { 
+//     --height: 65% !important;
+//     --min-height: auto;
+//     --max-height: 65% !important;
+// }
