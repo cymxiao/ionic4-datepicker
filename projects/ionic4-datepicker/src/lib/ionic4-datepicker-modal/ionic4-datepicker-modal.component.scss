@@ -101,6 +101,14 @@
                         justify-content: center;
                         font-weight: bold;
                     }
+
+                    .weekend-day-header {
+                        font-weight: bold;
+                        width: 14%;
+                        display: flex;
+                        justify-content: center;
+                        color: var(--ion-color-weekend);
+                    }
                 }
             }
 
@@ -118,7 +126,15 @@
                 }
             }
         }
-
+        .weekend-day{
+            color: var(--ion-color-weekend);
+        }
+        .dp-selecteddate-weekend {
+            background: var(--ion-color-weekend) !important;
+            color: var(--ion-color-weekend-contrast) !important;
+            border-radius: 4px;
+            font-weight: 500 !important;
+        }
         .dp-selecteddate {
             background: var(--ion-color-primary) !important;
             color: var(--ion-color-primary-contrast) !important;

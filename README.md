@@ -130,3 +130,8 @@ For model to open as screenshot please add below css in your projects global.scs
 Amin: comment
 
 run "npm run build_lib" in command to fix ionic4-datepicker package can't be found issue.
+
+2. @logisticinfotech can be removed . Otherwise there would be an issue like the following when run  ionic cordova build ios --prod --release in caller project.
+
+ERROR in ./src/app/pages/digest-list/digest-list.module.ngfactory.js
+Module not found: Error: Can't resolve '../../../assets/lib/ionic4-datepicker/ionic4-datepicker.ngfactory' in '/Users/cym/Documents/03.ionic-bitbucket/calendar-fe/src/app/pages/digest-list'
